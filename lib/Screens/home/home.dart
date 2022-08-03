@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:scantext/Screens/extracted_text.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -115,6 +116,12 @@ class _HomeState extends State<Home> {
                         ElevatedButton.icon(
                           onPressed: () {
                             // pickImage(ImageSource.gallery);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ExtractedText(
+                                          image: image,
+                                        )));
                           },
                           icon: const Icon(Icons.next_plan),
                           label: const Text(
