@@ -13,6 +13,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   File? image;
+
   Future pickImage(ImageSource source) async {
     try {
       final image = await ImagePicker().pickImage(source: source);
@@ -29,15 +30,6 @@ class _HomeState extends State<Home> {
       print('Failed to Pick Image $e');
     }
   }
-  // Image Picker
-  // XFile? file;
-
-  // dynamic pickImage(ImageSource source) async {
-  //   XFile? pickedFile = await ImagePicker().pickImage(source: source);
-
-  //   file = pickedFile;
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -56,36 +48,87 @@ class _HomeState extends State<Home> {
                   image!,
                   fit: BoxFit.cover,
                 )
-              : Icon(Icons.image),
+              : const Icon(Icons.image),
         ),
         const SizedBox(height: 22),
-        ElevatedButton.icon(
-          onPressed: () => pickImage(ImageSource.gallery),
-          icon: Icon(Icons.add_a_photo),
-          label: Text(
-            'Select from your Gallery',
-          ),
-          style: ElevatedButton.styleFrom(
-              primary: Colors.black87,
-              side: BorderSide(width: 3),
-              padding: EdgeInsets.fromLTRB(70, 12, 70, 12)),
-        ),
-        const SizedBox(height: 30),
-        ElevatedButton.icon(
-          onPressed: () => pickImage(ImageSource.camera),
-          icon: Icon(
-            Icons.camera,
-            color: Colors.black,
-          ),
-          label: Text(
-            'Capture using Camera',
-            style: TextStyle(color: Colors.black),
-          ),
-          style: ElevatedButton.styleFrom(
-              primary: Colors.white,
-              side: BorderSide(width: 2),
-              padding: EdgeInsets.fromLTRB(70, 12, 70, 12)),
-        ),
+
+        // Primary Buttons:
+        Container(
+            child: image == null
+                ? Column(
+                    children: [
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          pickImage(ImageSource.gallery);
+                        },
+                        icon: const Icon(Icons.add_photo_alternate),
+                        label: const Text(
+                          'Select from your Gallery',
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.black87,
+                            side: const BorderSide(width: 3),
+                            padding: const EdgeInsets.fromLTRB(70, 12, 70, 12)),
+                      ),
+                      const SizedBox(height: 30),
+                      ElevatedButton.icon(
+                        onPressed: () {
+                          pickImage(ImageSource.camera);
+                        },
+                        icon: const Icon(
+                          Icons.camera_alt,
+                          color: Colors.black,
+                        ),
+                        label: const Text(
+                          'Capture using Camera',
+                          style: TextStyle(color: Colors.black),
+                        ),
+                        style: ElevatedButton.styleFrom(
+                            primary: Colors.white,
+                            side: const BorderSide(width: 2),
+                            padding: const EdgeInsets.fromLTRB(70, 12, 70, 12)),
+                      ),
+                    ],
+                  )
+                : Container(
+                    child: Column(
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            pickImage(ImageSource.camera);
+                          },
+                          icon: const Icon(
+                            Icons.camera_alt,
+                            color: Colors.black,
+                          ),
+                          label: const Text(
+                            'Discard & Select new Image',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.white,
+                              side: const BorderSide(width: 2),
+                              padding:
+                                  const EdgeInsets.fromLTRB(70, 12, 70, 12)),
+                        ),
+                        const SizedBox(height: 30),
+                        ElevatedButton.icon(
+                          onPressed: () {
+                            // pickImage(ImageSource.gallery);
+                          },
+                          icon: const Icon(Icons.next_plan),
+                          label: const Text(
+                            'Extract Text',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                              primary: Colors.black87,
+                              side: const BorderSide(width: 3),
+                              padding:
+                                  const EdgeInsets.fromLTRB(120, 12, 120, 12)),
+                        ),
+                      ],
+                    ),
+                  ))
       ],
     );
   }

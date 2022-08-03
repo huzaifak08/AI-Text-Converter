@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:scantext/Screens/Tab_View.dart';
-import 'package:scantext/Screens/home.dart';
+import 'package:scantext/Screens/home/Tab_View.dart';
+import 'package:scantext/Screens/home/home.dart';
 
 void main() {
   runApp(const MyApp());
