@@ -16,13 +16,13 @@ class _TabViewState extends State<TabView> {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             'AI Text Converter',
             style: TextStyle(
                 color: Colors.black, fontWeight: FontWeight.w800, fontSize: 20),
           ),
           centerTitle: true,
-          bottom: TabBar(
+          bottom: const TabBar(
               labelColor: Colors.black,
               indicatorColor: Colors.black,
               tabs: [
@@ -35,7 +35,7 @@ class _TabViewState extends State<TabView> {
               ]),
 
           // Drawer Icon Color
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
         drawer: Drawer(
           backgroundColor: Colors.black,
@@ -75,13 +75,9 @@ class _TabViewState extends State<TabView> {
             ],
           ),
         ),
-        body: TabBarView(children: [
-          Container(
-            child: Home(),
-          ),
-          Container(
-            child: Home(),
-          )
+        body: const TabBarView(children: [
+          Home(),
+          Text('We Will design it Later'),
         ]),
       ),
     );

@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_ml_kit/google_ml_kit.dart';
+
 import 'package:image_picker/image_picker.dart';
 import 'package:scantext/Screens/extracted_text.dart';
 
@@ -13,6 +15,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // For getting Image:
   File? image;
 
   Future pickImage(ImageSource source) async {
@@ -37,6 +40,7 @@ class _HomeState extends State<Home> {
     return Column(
       children: [
         const SizedBox(height: 22),
+
         Container(
           color: const Color(0xFFF5F5F5),
           // color: Colors.black,
@@ -117,11 +121,13 @@ class _HomeState extends State<Home> {
                           onPressed: () {
                             // pickImage(ImageSource.gallery);
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => ExtractedText(
-                                          image: image,
-                                        )));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ExtractedText(
+                                  image: image,
+                                ),
+                              ),
+                            );
                           },
                           icon: const Icon(Icons.next_plan),
                           label: const Text(
